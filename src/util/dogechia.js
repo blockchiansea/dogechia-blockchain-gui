@@ -12,7 +12,7 @@ const convert = (amount, from, to) => {
   return Number.parseFloat(amountInFromUnit.div(units.getUnit(to)));
 };
 
-class Flax {
+class DogeChia {
   constructor(value, unit) {
     this._value = value;
     this._unit = unit;
@@ -73,42 +73,42 @@ class Flax {
   }
 }
 
-export const flax_formatter = (value, unit) => new Flax(value, unit);
+export const dogechia_formatter = (value, unit) => new DogeChia(value, unit);
 
-flax_formatter.convert = convert;
-flax_formatter.setDisplay = units.setDisplay;
-flax_formatter.setUnit = units.setUnit;
-flax_formatter.getUnit = units.getUnit;
-flax_formatter.setFiat = (currency, rate, display = null) => {
+dogechia_formatter.convert = convert;
+dogechia_formatter.setDisplay = units.setDisplay;
+dogechia_formatter.setUnit = units.setUnit;
+dogechia_formatter.getUnit = units.getUnit;
+dogechia_formatter.setFiat = (currency, rate, display = null) => {
   units.setUnit(currency, 1 / rate, display);
 };
 
-export const mojo_to_flax = (mojo) => {
-  return flax_formatter(Number.parseInt(mojo), 'mojo').to('flax').value();
+export const mojo_to_dogechia = (mojo) => {
+  return dogechia_formatter(Number.parseInt(mojo), 'mojo').to('dogechia').value();
 };
 
-export const flax_to_mojo = (flax) => {
-  return flax_formatter(Number.parseFloat(Number(flax)), 'flax')
+export const dogechia_to_mojo = (dogechia) => {
+  return dogechia_formatter(Number.parseFloat(Number(dogechia)), 'dogechia')
     .to('mojo')
     .value();
 };
 
-export const mojo_to_flax_string = (mojo) => {
-  return flax_formatter(Number(mojo), 'mojo').to('flax').toString();
+export const mojo_to_dogechia_string = (mojo) => {
+  return dogechia_formatter(Number(mojo), 'mojo').to('dogechia').toString();
 };
 
 export const mojo_to_colouredcoin = (mojo) => {
-  return flax_formatter(Number.parseInt(mojo), 'mojo')
+  return dogechia_formatter(Number.parseInt(mojo), 'mojo')
     .to('colouredcoin')
     .value();
 };
 
 export const colouredcoin_to_mojo = (colouredcoin) => {
-  return flax_formatter(Number.parseFloat(Number(colouredcoin)), 'colouredcoin')
+  return dogechia_formatter(Number.parseFloat(Number(colouredcoin)), 'colouredcoin')
     .to('mojo')
     .value();
 };
 
 export const mojo_to_colouredcoin_string = (mojo) => {
-  return flax_formatter(Number(mojo), 'mojo').to('colouredcoin').toString();
+  return dogechia_formatter(Number(mojo), 'mojo').to('colouredcoin').toString();
 };

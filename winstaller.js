@@ -14,16 +14,16 @@ function getInstallerConfig () {
   const outPath = path.join(rootPath, 'release-builds')
 
   return Promise.resolve({
-    appDirectory: path.join(rootPath, 'Flax-win32-x64'),
-    authors: 'Flax Network',
-    version: process.env.FLAX_INSTALLER_VERSION,
+    appDirectory: path.join(rootPath, 'DogeChia-win32-x64'),
+    authors: 'DogeChia Network',
+    version: process.env.DOGECHIA_INSTALLER_VERSION,
     noMsi: true,
-    iconUrl: 'https://raw.githubusercontent.com/Flax-Network/flax-blockchain/master/electron-react/src/assets/img/flax.ico',
+    iconUrl: 'https://raw.githubusercontent.com/DogeChia-Network/dogechia-blockchain/master/electron-react/src/assets/img/dogechia.ico',
     outputDirectory: path.join(outPath, 'windows-installer'),
     certificateFile: 'win_code_sign_cert.p12',
     certificatePassword: process.env.WIN_CODE_SIGN_PASS,
-    exe: 'Flax.exe',
-    setupExe: 'FlaxSetup-' + process.env.FLAX_INSTALLER_VERSION + '.exe',
-    setupIcon: path.join(rootPath, 'src', 'assets', 'img', 'flax.ico')
+    exe: 'DogeChia.exe',
+    setupExe: 'DogeChiaSetup-' + process.env.DOGECHIA_INSTALLER_VERSION + '.exe',
+    setupIcon: path.join(rootPath, 'src', 'assets', 'img', 'dogechia.ico')
   })
 }

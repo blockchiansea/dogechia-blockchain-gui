@@ -72,8 +72,8 @@ export default {
       'node_modules',
     ],
     alias: {
-      "@flax/core": `${__dirname}/src/components/core`,
-      "@flax/icons": `${__dirname}/src/components/icons`,
+      "@dogechia/core": `${__dirname}/src/components/core`,
+      "@dogechia/icons": `${__dirname}/src/components/icons`,
       crypto: 'crypto-browserify',
       stream: 'stream-browserify',
     },

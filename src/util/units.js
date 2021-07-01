@@ -1,17 +1,17 @@
 const units = {
-  flax: 1,
+  dogechia: 1,
   mojo: 1 / 1e12,
   colouredcoin: 1 / 1e9,
 };
 
 const aliases = {
-  flax: ['ch', 'flax', 'Flax'],
+  dogechia: ['ch', 'dogechia', 'DogeChia'],
   mojo: ['mj', 'mojo'],
   colouredcoin: ['cc', 'colouredcoin'],
 };
 
 const display = {
-  flax: {
+  dogechia: {
     format: '{amount} CH',
     fractionDigits: 12,
   },

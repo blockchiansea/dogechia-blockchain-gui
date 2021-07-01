@@ -2,8 +2,8 @@ const units = require("../../util/units");
 
 describe("units", () => {
   describe("#getUnit", () => {
-    it("gets unit of flax", () => {
-      const result = units.getUnit("flax");
+    it("gets unit of dogechia", () => {
+      const result = units.getUnit("dogechia");
 
       expect(result).toBe(1);
     });
@@ -18,11 +18,11 @@ describe("units", () => {
       expect(result).toBe(1e-9);
     });
     it("supports uppercase characters", () => {
-      const result = units.getUnit("FLAX");
+      const result = units.getUnit("DOGECHIA");
 
       expect(result).toBe(1);
     });
-    it("gets unit of flax using alias", () => {
+    it("gets unit of dogechia using alias", () => {
       const result = units.getUnit("ch");
 
       expect(result).toBe(1);
@@ -46,8 +46,8 @@ describe("units", () => {
     });
   });
   describe("#getDisplay", () => {
-    it("gets display of flax", () => {
-      const result = units.getDisplay("flax");
+    it("gets display of dogechia", () => {
+      const result = units.getDisplay("dogechia");
 
       expect(result).toEqual({
         format: "{amount} CH",
@@ -87,13 +87,13 @@ describe("units", () => {
       expect(result).toEqual(1);
     });
     it("modifies an existing unit", () => {
-      units.setUnit("flax", 9);
+      units.setUnit("dogechia", 9);
 
-      const result = units.getUnit("flax");
+      const result = units.getUnit("dogechia");
 
       expect(result).toEqual(9);
 
-      units.setUnit("flax", 1);
+      units.setUnit("dogechia", 1);
     });
   });
   describe("#setDisplay", () => {
@@ -111,15 +111,15 @@ describe("units", () => {
       });
     });
     it("updates an existing display", () => {
-      units.setDisplay("flax", {
-        format: "{amount} TXCH",
+      units.setDisplay("dogechia", {
+        format: "{amount} TXDG",
         fractionDigits: 0
       });
 
-      const result = units.getDisplay("flax");
+      const result = units.getDisplay("dogechia");
 
       expect(result).toEqual({
-        format: "{amount} TXCH",
+        format: "{amount} TXDG",
         fractionDigits: 0
       });
     });

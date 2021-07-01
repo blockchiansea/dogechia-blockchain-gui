@@ -36,7 +36,7 @@ export default function FarmOverviewHero() {
               Farmers earn block rewards and transaction fees by committing
               spare space to the network to help secure transactions. This
               is where your farm will be once you add a plot.{' '}
-              <Link target="_blank" href="https://github.com/DogeChia-Network/dogechia-blockchain/wiki/Network-Architecture">Learn more</Link>
+              <Link target="_blank" href="https://github.com/DogeChia/dogechia-blockchain/wiki/Network-Architecture">Learn more</Link>
             </Trans>
           </Typography>
           <Button

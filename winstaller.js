@@ -18,7 +18,7 @@ function getInstallerConfig () {
     authors: 'DogeChia Network',
     version: process.env.DOGECHIA_INSTALLER_VERSION,
     noMsi: true,
-    iconUrl: 'https://raw.githubusercontent.com/DogeChia-Network/dogechia-blockchain/master/electron-react/src/assets/img/dogechia.ico',
+    iconUrl: 'https://raw.githubusercontent.com/DogeChia/dogechia-blockchain/master/electron-react/src/assets/img/dogechia.ico',
     outputDirectory: path.join(outPath, 'windows-installer'),
     certificateFile: 'win_code_sign_cert.p12',
     certificatePassword: process.env.WIN_CODE_SIGN_PASS,

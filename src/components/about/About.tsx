@@ -143,7 +143,7 @@ export default function About(props: Props) {
           )}
         </VersionsTable>
 
-        <BugReport href="https://github.com/DogeChia-Network/dogechia-blockchain/issues" target="_blank">
+        <BugReport href="https://github.com/DogeChia/dogechia-blockchain/issues" target="_blank">
           Report an issue
         </BugReport>
         {'{{CSS}}'}

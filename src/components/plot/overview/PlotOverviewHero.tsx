@@ -29,7 +29,7 @@ export default function PlotOverviewHero() {
           <Typography variant="body1">
             <Trans>
               {'Plots are allocated space on your hard drive used to farm and earn DogeChia. '}
-              <Link target="_blank" href="https://github.com/DogeChia-Network/dogechia-blockchain/wiki/Network-Architecture">Learn more</Link>
+              <Link target="_blank" href="https://github.com/DogeChia/dogechia-blockchain/wiki/Network-Architecture">Learn more</Link>
             </Trans>
           </Typography>
           <Button

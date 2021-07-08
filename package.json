@@ -9,6 +9,17 @@
   "engines": {
     "node": ">=12.13.0"
   },
+  "build": {
+    "appId": "ord.dogechia.fullnode",
+    "productName": "DogeChia",
+    "copyright": "Copyright © 2021 DogeChia",
+    "mac": {
+      "icon": "./assets/img/dogechia.icns"
+    },
+    "win": {
+      "icon": "./assets/img/dogechia.png"
+    }
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config ./webpack.react.babel.ts",
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.babel.ts --mode development && electron .",

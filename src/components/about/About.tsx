@@ -113,7 +113,7 @@ export default function About(props: Props) {
         <StyledSubTitle>{description}</StyledSubTitle>
         <Spacer />
         <div className="copyright">
-          Copyright (c) 2021 DogeChia Network, DogeChia Network
+          Copyright (c) 2021 DogeChia Network, DogeChia
         </div>
         <Spacer />
         <VersionsTable>
@@ -143,7 +143,7 @@ export default function About(props: Props) {
           )}
         </VersionsTable>
 
-        <BugReport href="https://github.com/DogeChia/dogechia-blockchain/issues" target="_blank">
+        <BugReport href="https://github.com/DogeChia/doge-chia/issues" target="_blank">
           Report an issue
         </BugReport>
         {'{{CSS}}'}

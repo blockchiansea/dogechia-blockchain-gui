@@ -2,10 +2,9 @@ import Big from 'big.js';
 import TransactionType from '../constants/TransactionType';
 import type Wallet from '../types/Wallet';
 
-export default function computeStatistics(
-  wallets: Wallet[],
-): {
-  totalDogeChiaFarmed: Big;
+// deprecated
+export default function computeStatistics(wallets: Wallet[]): {
+  totalChiaFarmed: Big;
   biggestHeight: number;
   biggestRewardHeight: number;
   poolCoins: Big;

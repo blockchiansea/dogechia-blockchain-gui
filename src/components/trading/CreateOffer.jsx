@@ -31,7 +31,7 @@ const TradeList = () => {
   const tradeRows = useMemo(() => {
     return trades.map((trade) => ({
       amount: trade.side === 'sell' ? -trade.amount : trade.amount,
-      name: wallets[trade.wallet_id - 1].name,
+      name: wallets[trade.wallet_id].name,
     }));
   }, [trades]);
 
@@ -90,14 +90,14 @@ export default function CreateOffer() {
     }
 
     const mojo =
-      wallets[wallet_id.value - 1].type === COLOURED_COIN
+      wallets[wallet_id.value].type === COLOURED_COIN
         ? colouredcoin_to_mojo(amount_input.value)
         : dogechia_to_mojo(amount_input.value);
 
     const trade =
       buy_or_sell.value === 1
-        ? newBuy(mojo, wallet_id.value-1)
-        : newSell(mojo, wallet_id.value-1);
+        ? newBuy(mojo, wallet_id.value)
+        : newSell(mojo, wallet_id.value);
 
     dispatch(addTrade(trade));
   }
@@ -203,7 +203,7 @@ export default function CreateOffer() {
               >
                 {!!wallets &&
                   wallets.map((wallet) => (
-                    <MenuItem value={wallet.id} key={wallet.id}>
+                    <MenuItem value={wallet.id+1} key={wallet.id+1}>
                       {wallet.name}
                     </MenuItem>
                   ))}

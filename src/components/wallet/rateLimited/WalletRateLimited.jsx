@@ -228,9 +228,8 @@ const IncompleteCard = (props) => {
   const id = props.wallet_id;
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.wallet_state.wallets.find(i => i.id === id).data);
-  const data_parsed = JSON.parse(data);
-  const pubkey = data_parsed.user_pubkey;
+  const data = useSelector((state) => state.wallet_state.wallets[id - 1].data);
+  const pubkey = data.user_pubkey;
 
   function copy() {
     navigator.clipboard.writeText(pubkey);
@@ -357,13 +356,8 @@ const IncompleteCard = (props) => {
 const RLDetailsCard = (props) => {
   const id = props.wallet_id;
 
-  const data = useSelector((state) => state.wallet_state.wallets.find(i => i.id === id).data);
-  const data_parsed = JSON.parse(data);
-  const { type } = data_parsed;
-  const { user_pubkey } = data_parsed;
-  const { admin_pubkey } = data_parsed;
-  const { interval } = data_parsed;
-  const { limit } = data_parsed;
+  const data = useSelector((state) => state.wallet_state.wallets[id - 1].data);
+  const { type, user_pubkey, admin_pubkey, interval, limit } = data;
   const origin = data_parsed.rl_origin;
   const origin_string = JSON.stringify(origin);
   const infopacket = {
@@ -523,13 +517,13 @@ const BalanceCardSubSection = (props) => {
 const BalanceCard = (props) => {
   const id = props.wallet_id;
   const balance = useSelector(
-    (state) => state.wallet_state.wallets.find(i => i.id === id).wallet_balance.confirmed_wallet_balance,
+    (state) => state.wallet_state.wallets[id - 1].wallet_balance.confirmed_wallet_balance,
   );
   const balance_spendable = useSelector(
-    (state) => state.wallet_state.wallets.find(i => i.id === id).wallet_balance.spendable_balance,
+    (state) => state.wallet_state.wallets[id - 1].wallet_balance.spendable_balance,
   );
   const balance_pending = useSelector(
-    (state) => state.wallet_state.wallets.find(i => i.id === id).wallet_balance.pending_balance,
+    (state) => state.wallet_state.wallets[id - 1].wallet_balance.pending_balance,
   );
 
   const balance_ptotal = balance + balance_pending;
@@ -591,12 +585,12 @@ const SendCard = (props) => {
   const dispatch = useDispatch();
 
   const sending_transaction = useSelector(
-    (state) => state.wallet_state.wallets.find(i => i.id === id).sending_transaction,
+    (state) => state.wallet_state.wallets[id - 1].sending_transaction,
   );
   const syncing = useSelector((state) => state.wallet_state.status.syncing);
 
   const send_transaction_result = useSelector(
-    (state) => state.wallet_state.wallets.find(i => i.id === id).send_transaction_result,
+    (state) => state.wallet_state.wallets[id - 1].send_transaction_result,
   );
 
   const result = get_transaction_result(send_transaction_result);
@@ -750,12 +744,11 @@ const SendCard = (props) => {
 export default function RateLimitedWallet(props) {
   const id = useSelector((state) => state.wallet_menu.id);
   const wallets = useSelector((state) => state.wallet_state.wallets ?? []);
-  const data = useSelector((state) => state.wallet_state.wallets.find(i => i.id === id).data);
-  const data_parsed = JSON.parse(data);
-  const { type } = data_parsed;
-  const initStatus = data_parsed.initialized;
+  console.log(`${JSON.stringify(wallets[id - 1].data)}`)
+  const data = useSelector((state) => state.wallet_state.wallets[id - 1].data);
+  const { type, initStatus } = data;
 
-  if (wallets.length > props.wallet_id) {
+  if (wallets.length >= props.wallet_id) {
     if (type === 'user') {
       if (initStatus) {
         return (

@@ -90,7 +90,7 @@ export default function CreateOffer() {
     }
 
     const mojo =
-      wallets[wallet_id.value].type === COLOURED_COIN
+      wallets[wallet_id.value - 1].type === COLOURED_COIN
         ? colouredcoin_to_mojo(amount_input.value)
         : dogechia_to_mojo(amount_input.value);
 

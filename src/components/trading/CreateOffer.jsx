@@ -96,8 +96,8 @@ export default function CreateOffer() {
 
     const trade =
       buy_or_sell.value === 1
-        ? newBuy(mojo, wallet_id.value)
-        : newSell(mojo, wallet_id.value);
+        ? newBuy(mojo, wallet_id.value - 1)
+        : newSell(mojo, wallet_id.value - 1);
 
     dispatch(addTrade(trade));
   }
@@ -120,9 +120,9 @@ export default function CreateOffer() {
       const offer = {};
       for (const trade of trades) {
         if (trade.side === 'buy') {
-          offer[trade.wallet_id] = trade.amount;
+          offer[trade.wallet_id+1] = trade.amount;
         } else {
-          offer[trade.wallet_id] = -trade.amount;
+          offer[trade.wallet_id+1] = -trade.amount;
         }
       }
       dispatch(create_trade_action(offer, filePath, history));
@@ -203,7 +203,7 @@ export default function CreateOffer() {
               >
                 {!!wallets &&
                   wallets.map((wallet) => (
-                    <MenuItem value={wallet.id+1} key={wallet.id+1}>
+                    <MenuItem value={wallet.id} key={wallet.id}>
                       {wallet.name}
                     </MenuItem>
                   ))}

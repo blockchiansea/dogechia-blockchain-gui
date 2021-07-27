@@ -23,7 +23,7 @@ describe('units', () => {
       expect(result).toBe(1);
     });
     it('gets unit of chia using alias', () => {
-      const result = units.getUnit('dg');
+      const result = units.getUnit('xdg');
 
       expect(result).toBe(1);
     });
@@ -50,7 +50,7 @@ describe('units', () => {
       const result = units.getDisplay('dogechia');
 
       expect(result).toEqual({
-        format: '{amount} DG',
+        format: '{amount} XDG',
         fractionDigits: 12,
       });
     });

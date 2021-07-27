@@ -5,14 +5,14 @@ const units = {
 };
 
 const aliases = {
-  dogechia: ['ch', 'dogechia', 'DogeChia'],
+  dogechia: ['xdg', 'dogechia', 'DogeChia'],
   mojo: ['mj', 'mojo'],
   colouredcoin: ['cc', 'colouredcoin'],
 };
 
 const display = {
   dogechia: {
-    format: '{amount} CH',
+    format: '{amount} XDG',
     fractionDigits: 12,
   },
   mojo: {

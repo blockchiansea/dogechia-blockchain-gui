@@ -32,6 +32,7 @@ const TradeList = () => {
     return trades.map((trade) => ({
       amount: trade.side === 'sell' ? -trade.amount : trade.amount,
       name: wallets[trade.wallet_id].name,
+      type: wallets[trade.wallet_id].type
     }));
   }, [trades]);
 

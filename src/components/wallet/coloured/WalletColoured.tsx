@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from '@lingui/macro';
 import { AlertDialog, Card, Flex } from '@dogechia/core';
+import useWallet from '../../../hooks/useWallet';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -199,12 +200,9 @@ type ColourCardProps = {
 
 function ColourCard(props: ColourCardProps) {
   const { wallet_id } = props;
+  const { wallet } = useWallet(wallet_id);
 
   const dispatch = useDispatch();
-
-  const wallet = useSelector((state: RootState) =>
-    state.wallet_state.wallets?.find((item) => item.id === wallet_id),
-  );
 
   if (!wallet) {
     return null;
@@ -311,25 +309,20 @@ type BalanceCardProps = {
 };
 
 function BalanceCard(props: BalanceCardProps) {
-  const id = props.wallet_id;
-  let name = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id - 1].name,
-  );
-  if (!name) {
-    name = '';
+  const { wallet_id } = props;
+  const { wallet } = useWallet(wallet_id);
+  
+  if (!wallet) {
+    return null;
   }
+
+  const name = wallet.name;
+  const balance = wallet.wallet_balance?.confirmed_wallet_balance ? wallet.wallet_balance?.confirmed_wallet_balance : 0;
+  const balance_spendable = wallet.wallet_balance?.spendable_balance ? wallet.wallet_balance?.spendable_balance : 0;
+  const balance_pending = wallet.wallet_balance?.pending_balance ? wallet.wallet_balance?.pending_balance : 0;
+  const pending_change = wallet?.wallet_balance?.pending_change ? wallet?.wallet_balance?.pending_change : 0;
+
   const cc_unit = get_cc_unit(name);
-
-  const balance = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id - 1].wallet_balance.confirmed_wallet_balance,
-  );
-
-  const balance_spendable = useSelector(
-    (state: RootState) =>  state.wallet_state.wallets[id - 1].wallet_balance.spendable_balance
-  );
-  const balance_pending = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id - 1].wallet_balance.pending_balance
-  );
 
   const balance_ptotal = balance + balance_pending;
 
@@ -347,6 +340,7 @@ function BalanceCard(props: BalanceCardProps) {
     "<tr><td colspan='2' style='text-align:center'><hr width='50%'></td></tr>";
   const balance_ptotal_dogechia = mojo_to_colouredcoin_string(balance_ptotal);
   const balance_pending_dogechia = mojo_to_colouredcoin_string(balance_pending);
+  const balance_change_dogechia = mojo_to_colouredcoin_string(pending_change);
 
   const acc_content =
     balancebox_1 +
@@ -368,6 +362,7 @@ function BalanceCard(props: BalanceCardProps) {
     balancebox_2 +
     balancebox_change +
     balancebox_3 +
+    balance_change_dogechia +
     balancebox_unit +
     balancebox_5;
 
@@ -407,35 +402,34 @@ type SendCardProps = {
 
 function SendCard(props: SendCardProps) {
   const id = props.wallet_id;
+  const { wallet } = useWallet(id);
+
+  if (!wallet) {
+    return null;
+  }
+
   const classes = useStyles();
   let address_input: HTMLInputElement;
   let amount_input: HTMLInputElement;
   let fee_input: HTMLInputElement;
   const dispatch = useDispatch();
-  let name = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id - 1].name,
-  );
+
+  let name = wallet?.name;
   if (!name) {
     name = '';
   }
+  
   const cc_unit = get_cc_unit(name);
   const currencyCode = useCurrencyCode();
 
-  const sending_transaction = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id - 1].sending_transaction,
-  );
+  const sending_transaction = wallet.sending_transaction;
+  const send_transaction_result = wallet.send_transaction_result;
+  const colour = wallet.colour;
 
-  const send_transaction_result = useSelector(
-    (state: RootState) =>
-      state.wallet_state.wallets[id - 1].send_transaction_result,
-  );
-
-  const colour = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id - 1].colour,
-  );
   const syncing = useSelector(
     (state: RootState) => state.wallet_state.status.syncing,
   );
+
   const result = get_transaction_result(send_transaction_result);
   const result_message = result.message;
   const result_class = result.success
@@ -630,9 +624,14 @@ type AddressCardProps = {
 
 function AddressCard(props: AddressCardProps) {
   const id = props.wallet_id;
-  const address = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id - 1].address,
-  );
+  const { wallet } = useWallet(id);
+
+  if (!wallet) {
+    return null;
+  }
+
+  const address = wallet.address;
+
   const classes = useStyles();
   const dispatch = useDispatch();
 
